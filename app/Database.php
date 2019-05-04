@@ -18,10 +18,7 @@ class Database {
     }
 
     private function getPDO() {
-        $connectData = "'mysql:host=localhost;dbname=blog', 'root', ''";
-        var_dump($connectData);
         $pdo = new PDO('mysql:host=' . $this->db_host . ';dbname=' . $this->db_name . '', $this->db_user, $this->db_pass);
-        var_dump($pdo);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->pdo = $pdo;
         return $pdo;
