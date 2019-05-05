@@ -1,6 +1,7 @@
 <?php
 use App\Autoloader;
-require "../app/Autoloader.php";
+use App\Database;
+require_once "../app/Autoloader.php";
 Autoloader::register();
 
 if (isset($_GET["page"])) {
@@ -8,6 +9,10 @@ if (isset($_GET["page"])) {
 } else {
     $page = "home";
 }
+
+// Initialisation des objets
+$db = new Database("localhost", "blog", "root", "");
+
 
 ob_start();
 if ($page === "home") {

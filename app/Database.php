@@ -18,15 +18,17 @@ class Database {
     }
 
     private function getPDO() {
-        $pdo = new PDO('mysql:host=' . $this->db_host . ';dbname=' . $this->db_name . '', $this->db_user, $this->db_pass);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->pdo = $pdo;
-        return $pdo;
+        if ($this->pdo === null) {
+            $pdo = new PDO('mysql:host=' . $this->db_host . ';dbname=' . $this->db_name . '', $this->db_user, $this->db_pass);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->pdo = $pdo;
+        }
+        return $this->pdo;
     }
 
-    public function query($queryStr) {
+    public function query($queryStr, $class_name) {
         $req = $this->getPDO()->query($queryStr);
-        $datas = $req->fetchAll(PDO::FETCH_OBJ);
+        $datas = $req->fetchAll(PDO::FETCH_CLASS, $class_name);
         return $datas;
     }
 

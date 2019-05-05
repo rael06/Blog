@@ -3,18 +3,18 @@
 <p><a href="index.php?page=single">Single</a></p>
 
 <?php
-use App\Autoloader;
-use App\Database;
-
-require_once "../app/Autoloader.php";
-Autoloader::register();
 
 
-$db = new Database("localhost", "blog", "root", "");
 $queryStr = "SELECT * FROM articles";
-$res = $db->query($queryStr);
+// $prep = $db->prepare($queryStr);
+// var_dump($prep);
+$res = $db->query($queryStr, "App\Table\Article");
 // $count = $pdo->exec("INSERT INTO articles SET titre='Mon titre', date='" . date('Y-m-d H:i:s') . "'");
-var_dump($res);
 // var_dump($count);
-
 ?>
+<ul>
+	<?php foreach ($res as $post): ?>
+		<h2><a href="<?= $post->url ?>"><?= $post->titre ?></a></h2>
+		<p><?= $post->extrait ?></p>
+	<?php endforeach ?>
+</ul>
