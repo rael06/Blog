@@ -26,9 +26,21 @@ class Database {
         return $this->pdo;
     }
 
-    public function query($queryStr, $class_name) {
+    public function db_query($queryStr, $class_name) {
         $req = $this->getPDO()->query($queryStr);
         $datas = $req->fetchAll(PDO::FETCH_CLASS, $class_name);
+        return $datas;
+    }
+
+    public function db_prepare($queryStr, $param, $class_name, $oneResult = false) {
+        $reqPrepared = $this->getPDO()->prepare($queryStr);
+        $reqPrepared->execute($param);
+        $reqPrepared->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        if ($oneResult) {
+            $datas = $reqPrepared->fetch();
+        } else {
+            $datas = $reqPrepared->fetchAll();
+        }
         return $datas;
     }
 

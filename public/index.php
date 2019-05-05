@@ -17,7 +17,7 @@ $db = new Database("localhost", "blog", "root", "");
 ob_start();
 if ($page === "home") {
     require "../pages/home.php";
-} elseif ($page === "single") {
+} elseif ($page === "article") {
     require "../pages/single.php";
 }
 $content = ob_get_clean();
