@@ -4,11 +4,12 @@
 
 <?php
 
+use App\App;
 
 $queryStr = "SELECT * FROM articles";
 // $prep = $db->prepare($queryStr);
 // var_dump($prep);
-$res = $db->db_query($queryStr, "App\Table\Article");
+$res = App::getDb()->db_query($queryStr, "App\Table\Article");
 // $count = $pdo->exec("INSERT INTO articles SET titre='Mon titre', date='" . date('Y-m-d H:i:s') . "'");
 // var_dump($count);
 ?>

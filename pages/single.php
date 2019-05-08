@@ -2,7 +2,7 @@
 $queryStr = "SELECT * FROM articles WHERE id = ?";
 $id = [$_GET["id"]];
 $class = "App\Table\Article";
-$post = $db->db_prepare($queryStr, $id, $class, true);
+$post = App\App::getDb()->db_prepare($queryStr, $id, $class, true);
 var_dump($post);
 ?>
 

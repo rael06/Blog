@@ -4,6 +4,7 @@ namespace App;
 use \PDO;
 
 class Database {
+    
     private $db_name = "";
     private $db_user = "";
     private $db_pass = "";
