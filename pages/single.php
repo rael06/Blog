@@ -1,8 +1,11 @@
 <?php
+use App\App;
+
 $queryStr = "SELECT * FROM articles WHERE id = ?";
+var_dump($_GET);
 $id = [$_GET["id"]];
 $class = "App\Table\Article";
-$post = App\App::getDb()->db_prepare($queryStr, $id, $class, true);
+$post = App::getDb()->db_prepare($queryStr, $id, $class, true);
 var_dump($post);
 ?>
 

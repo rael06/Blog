@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-use \PDO;
+use PDO;
 
 class Database {
     
@@ -27,9 +27,14 @@ class Database {
         return $this->pdo;
     }
 
-    public function db_query($queryStr, $class_name) {
+    public function db_query($queryStr, $class_name, $oneResult = false) {
         $req = $this->getPDO()->query($queryStr);
-        $datas = $req->fetchAll(PDO::FETCH_CLASS, $class_name);
+        $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
+        if ($oneResult) {
+            $datas = $req->fetch();
+        } else {
+            $datas = $req->fetchAll();
+        }
         return $datas;
     }
 
